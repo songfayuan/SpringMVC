@@ -1,0 +1,4 @@
+此案例项目中包含聊天室 和 cpu监控图表。对初学websocket的童鞋有很大的帮助。 此压缩包中含有源代码以及war包。 将war放在tomcat7中的webapps中可直接运行。（注意： 由于websocket限制，tomcat必须是7或者以上的版本。jdk是1.7以及以上的版本） 代码可导入MyEclipse中运行，或者查看。（up主编译环境为MyEclipse2014+jdk1.7+tomcat7） 聊天室： url： 127.0.0.1:8081/websocket/ 实现类：MyWebSocket 此案例是一个简单是websocket运用的案例。 页面并没有华丽的样式，只是简单的说明此案例怎么运用。 在此实现类中，每一行代码中都有解释，对于新手初学websocket来说，真的是简单易懂。并且容易在这里扩展。 cpu监控动态折线图 url：127.0.0.1:8081/websocket/echart/ceshi.jsp 实现类：Mydongtai 此案例比上个聊天室案例要更复杂点。 这里设定多线程同时来获取cpu的参数。 运用timer类来定时获取。按照面向对象的思想，分层次来写出获取cpu方法的实现类以及接口。这里对学习websocket的童鞋以及初学java架构思想有很好的帮助。 另外前台利用百度Echart来展示动态效果。 这对于学习Echart的童鞋也是一个很不错的案例。 这个案例很好的显示如何动态加载数据时，怎么来调用其API。 （其中有个纯html，这个页面是用js定时器获取的数据的。是官网上一个案例。）
+
+
+http://download.csdn.net/download/tianleboy_520/9380380

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ECharts">
+    <meta name="author" content="kener.linfeng@gmail.com">
+    <title>ECharts · Example</title>
+</head>
+<body>
+    <script src="build/dist/echarts.js"></script>
+	<script src="build/dist/theme/macarons.js"></script>
+    <!-- Fixed navbar -->
+	<div class="nav2">
+		<div id="main" style="height:600px"></div>
+	</div>
+   <script type="text/javascript">
+		 // 路径配置
+        require.config({
+            paths: {
+                echarts: 'build/dist'
+            }
+        });
+        
+        // 使用
+        require(
+            [
+                'echarts',
+                'echarts/chart/line' // 使用柱状图就加载bar模块，按需加载
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('main'),theme); 
+                option = {
+						 title : {
+							 x : 'center',
+							text: '光机数量'
+						},
+						tooltip : {
+							trigger: 'axis'
+						},
+						legend: {
+							x : '60px',
+							y : '40px',
+							data:['郑州']
+						},
+						toolbox: {
+							show : true,
+							feature : {
+								mark : {show: true},
+								dataView : {show: true, readOnly: false},
+								restore : {show: true},
+								saveAsImage : {show: true}
+							}
+						},
+						calculable : true,
+						xAxis : [
+							{
+								type : 'category',
+								boundaryGap : false,
+								data : ['周一','周二','周三','周四','周五','周六','周日']
+							}
+						],
+						yAxis : [
+							{
+								type : 'value',
+								axisLabel : {
+									formatter: '{value}'
+								}
+							}
+						],
+						series : [
+							{
+								name:'郑州',
+								type:'line',
+								data:[12, 132, 101, 134, 90, 230, 210]
+							}
+						]
+					};	
+					
+		
+					var axisData;
+					var timeTicket;
+					clearInterval(timeTicket);
+					timeTicket = setInterval(function (){
+						axisData = (new Date()).toLocaleTimeString().replace(/^\D*/,'');
+
+						// 动态数据接口 addData
+						myChart.addData([
+							[
+								0,        // 系列索引   0
+								Math.round(Math.random() * 1000), // 新增数据   Math.round(Math.random() * 1000),  新增数据
+								false,    // 新增数据是否从队列头部插入
+								true,
+								axisData,			// 坐标轴标签
+							]
+						]);						
+					}, 2100);
+
+						
+                // 为echarts对象加载数据 
+                myChart.setOption(option); 	
+            }
+        );
+	</script>
+
+</body>
+</html>
